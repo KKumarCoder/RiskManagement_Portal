@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    
+    <!-- Background Video -->
+    <video autoplay muted loop id="bg-video">
+        <source src="{{ url_for('static', filename='102089-659185559_small.mp4') }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="container">
+        <h2>Risk Prediction System</h2>
+        
+        <form action="/" method="post">
+            {% for column in columns %}
+            <div class="input-group">
+                <label>{{ column }}:</label>
+                <input type="text" name="{{ column }}" required>
+            </div>
+            {% endfor %}
+            
+            <button type="submit">Predict Risk</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h3>Predicted Risk Level: <span>{{ prediction }}</span></h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
